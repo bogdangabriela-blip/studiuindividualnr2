@@ -1,55 +1,66 @@
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Poppins", Arial, sans-serif;
 }
 
 body {
-    background: #f2f2f2;
-    padding: 20px;
+    background: linear-gradient(135deg, #fdfdfd, #f3f6ff);
+    padding: 40px;
+    color: #222;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 header h1 {
-    margin-bottom: 10px;
-    font-size: 2.5rem;
-    color: #222;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4e8cff, #7db9ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(120,170,255,0.4);
 }
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    padding: 10px 0;
 }
 
 .card {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-.card img {
-    width: 100%;
-    height: 220px;        
-    border-radius: 10px;
-    object-fit: cover;    
-    display: block;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all .3s ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    border-color: rgba(100,150,255,0.3);
 }
 
 .card img {
     width: 100%;
-    border-radius: 10px;
+    height: 230px;
     object-fit: cover;
+    display: block;
+    transition: transform .3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.08);
 }
 
 .lightbox {
@@ -57,25 +68,30 @@ header h1 {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.85);
     justify-content: center;
     align-items: center;
+    z-index: 10000;
+    animation: fadeBG .3s ease;
     cursor: zoom-out;
-    z-index: 9999;
 }
 
 .lightbox img {
-    max-width: 90%;
+    max-width: 92%;
     max-height: 90%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px black;
-    animation: fadeIn 0.2s ease-in-out;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+    animation: popIn .25s ease;
 }
 
-/* animație mică */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to   { opacity: 1; transform: scale(1);   }
+@keyframes popIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes fadeBG {
+    from { background: rgba(255,255,255,0); }
+    to   { background: rgba(255,255,255,0.85); }
 }
